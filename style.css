@@ -1,0 +1,174 @@
+/* ---------------------------------------------------
+   Tokens — 4 colores únicamente
+--------------------------------------------------- */
+:root{
+  --bg:        #0A2E35; /* secundario: fondo */
+  --bg-alt:    #225C67; /* secundario: variación de fondo */
+  --accent:    #31FF1E; /* primario: número y barra de progreso */
+  --ink:       #F4F7EC; /* texto */
+
+  --line:      rgba(244,247,236,0.14);
+  --ink-dim:   rgba(244,247,236,0.68);
+  --muted:     rgba(244,247,236,0.42);
+  --accent-soft: rgba(49,255,30,0.14);
+
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 6vh 1.25rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* textura sutil con el segundo color secundario, para "jugar" con el fondo */
+.texture{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  /*background-image: repeating-linear-gradient(
+    115deg,
+    rgba(34,92,103,0.45) 0px,
+    rgba(34,92,103,0.45) 1px,
+    transparent 1px,
+    transparent 13px
+  );
+  mask-image: radial-gradient(ellipse at 50% 20%, rgba(0,0,0,0.9), transparent 75%);*/
+}
+
+/* ---------------------------------------------------
+   Layout
+--------------------------------------------------- */
+.stage{
+  width: 100%;
+  max-width: 30rem;
+  position: relative;
+  z-index: 1;
+}
+
+.frame{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--bg-alt);
+  margin-bottom: 2.6rem;
+}
+
+.eyebrow{
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.frame-dates{
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------
+   Hero
+--------------------------------------------------- */
+.hero{
+  text-align: center;
+  margin-bottom: 2.8rem;
+}
+
+.label{
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.number{
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(7rem, 34vw, 13.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  text-shadow: 0 0 38px var(--accent-soft);
+}
+
+.number.pulse{
+  animation: pulse 0.6s ease-out;
+}
+
+@keyframes pulse{
+  0%   { transform: scale(0.94); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.sub{
+  margin: 0.7rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink-dim);
+}
+
+/* ---------------------------------------------------
+   Barra de progreso — una sola línea, ancho uniforme
+--------------------------------------------------- */
+.ledger-row{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2px;
+  width: 100%;
+  margin-bottom: 0.7rem;
+  overflow: hidden;
+}
+
+.tick{
+  flex: 1 1 0;
+  min-width: 0;
+  height: 20px;
+  background: var(--bg-alt);
+  border-radius: 1px;
+}
+
+.tick.is-filled{
+  background: var(--accent);
+}
+
+.ledger-meta{
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------
+   Responsive
+--------------------------------------------------- */
+@media (max-width: 420px){
+  .frame{ flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .tick{ height: 16px; }
+}
+
+/* ---------------------------------------------------
+   Motion preference
+--------------------------------------------------- */
+@media (prefers-reduced-motion: reduce){
+  .number.pulse{ animation: none; }
+}
