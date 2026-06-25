@@ -10,7 +10,7 @@ hoy (25 de junio de 2026) quedan **336 días**, hasta el **27 de mayo de
 ```
 index.html   estructura de la página
 style.css    estilos
-script.js    lógica de la cuenta atrás (fechas, barra de progreso)
+script.js    lógica de la cuenta atrás (fechas, anillo de progreso)
 ```
 
 ## Publicarla en GitHub Pages
@@ -29,11 +29,15 @@ proceso de compilación.
 
 ## Cómo funciona
 
-- El número grande es siempre **los días que quedan hasta el 27 de mayo de
-  2027**. Se recalcula a partir de la fecha actual del visitante, así que
-  la cifra baja sola día a día sin que tengas que tocar nada.
-- La barra debajo del número es una representación visual del progreso
-  (días transcurridos frente al total de 365), siempre en una sola línea.
+- El número grande, en el centro del anillo, es siempre **los días que
+  quedan hasta el 27 de mayo de 2027**. Se recalcula a partir de la fecha
+  actual del visitante, así que la cifra baja sola día a día sin que
+  tengas que tocar nada.
+- El anillo sólido alrededor representa el progreso (% de días
+  transcurridos sobre 365), con el extremo redondeado, empezando arriba
+  (12h) y avanzando en sentido horario — igual que los anillos de
+  Actividad de iPhone.
+- Debajo del anillo, una línea muestra el detalle: `8% - 29 días de 365`.
 - La página es solo de visualización: no tiene botones ni controles, no
   guarda nada en el navegador.
 
@@ -42,10 +46,12 @@ proceso de compilación.
 - Colores (4 en total):
   - Fondo: `#0A2E35`
   - Variación de fondo / textura: `#225C67`
-  - Color primario (número y barra de progreso): `#31FF1E`
+  - Color primario (número y anillo de progreso): `#31FF1E`
   - Texto: `#F4F7EC`
-- Tipografía: **JetBrains Mono** (única familia usada en toda la página,
-  cargada desde Google Fonts).
+- Tipografía: **General Sans**, cargada desde el CDN oficial de Fontshare
+  (gratis para uso personal y comercial, licencia ITF Free Font License).
+  Se usa en peso **Regular (400)** para todos los textos, salvo el número
+  grande del centro, que usa **Medium (500)**.
 
 ## Personalizar fechas
 
