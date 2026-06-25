@@ -6,9 +6,7 @@
 <title>Salida de Gozo · Cuenta atrás</title>
 <meta name="description" content="Cuenta atrás de Salida de Gozo.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -23,18 +21,22 @@
     <span class="frame-dates" id="dateRange" aria-hidden="true"></span>
   </header>
 
-  <section class="hero" aria-live="polite">
-    <p class="label">Días restantes</p>
-    <p class="number" id="daysNumber">336</p>
-    <p class="sub" id="targetLine">hasta el 27 de mayo de 2027</p>
-  </section>
+  <section class="dial" aria-live="polite">
 
-  <section class="ledger" aria-hidden="true">
-    <div class="ledger-row" id="ledgerRow"></div>
-    <div class="ledger-meta">
-      <span id="elapsedText">29 de 365 días</span>
-      <span id="percentText">8%</span>
+    <div class="dial-wrap">
+      <svg class="dial-svg" viewBox="0 0 280 280" aria-hidden="true">
+        <circle class="dial-track" cx="140" cy="140" r="118" />
+        <circle class="dial-progress" id="dialProgress" cx="140" cy="140" r="118" transform="rotate(-90 140 140)" />
+      </svg>
+      <div class="dial-center">
+        <p class="label">Días restantes</p>
+        <p class="number" id="daysNumber">336</p>
+        <p class="sub" id="targetLine">hasta el 27 de mayo de 2027</p>
+      </div>
     </div>
+
+    <p class="dial-meta" id="metaLine">8% - 29 días de 365</p>
+
   </section>
 
 </main>
