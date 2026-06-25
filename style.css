@@ -109,13 +109,13 @@ body{
 .dial-track{
   fill: none;
   stroke: var(--bg-alt);
-  stroke-width: 17;
+  stroke-width: 17px;
 }
 
 .dial-progress{
   fill: none;
   stroke: var(--accent);
-  stroke-width: 17;
+  stroke-width: 17px;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.6s ease;
 }
