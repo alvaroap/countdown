@@ -8,7 +8,7 @@
 
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -25,10 +25,10 @@
 
     <div class="dial-wrap">
       <svg class="dial-svg" viewBox="0 0 280 280" aria-hidden="true">
-        <circle class="dial-track" cx="140" cy="140" r="118" />
-        <circle class="dial-progress" id="dialProgress" cx="140" cy="140" r="118" transform="rotate(-90 140 140)" />
+        <circle class="dial-track" cx="140" cy="140" r="118" fill="none" stroke="#225C67" stroke-width="17" />
+        <circle class="dial-progress" id="dialProgress" cx="140" cy="140" r="118" fill="none" stroke="#31FF1E" stroke-width="17" stroke-linecap="round" transform="rotate(-90 140 140)" />
       </svg>
-      <div class="dial-center">
+      <div class="dial-center" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:2px; padding:0 1rem;">
         <p class="label">Días restantes</p>
         <p class="number" id="daysNumber">336</p>
         <p class="sub" id="targetLine">hasta el 27 de mayo de 2027</p>
