@@ -11,7 +11,8 @@
   var TARGET_DATE = new Date(2027, 4, 27);   // 27 de mayo de 2027 (meta)
 
   var DAY_MS = 24 * 60 * 60 * 1000;
-  var TICKS = 73; // tira de la barra de progreso (proporcional, no depende del nº de días)
+  var RING_RADIUS = 118;                     // debe coincidir con el r del SVG en index.html
+  var CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 
   var dateFmtLong = new Intl.DateTimeFormat("es-ES", {
     day: "numeric",
@@ -40,17 +41,11 @@
     return { elapsed: elapsed, remaining: remaining, pct: pct };
   }
 
-  function renderTicks(pct) {
-    var row = document.getElementById("ledgerRow");
-    var filled = Math.round((pct / 100) * TICKS);
-    var frag = document.createDocumentFragment();
-    for (var i = 0; i < TICKS; i++) {
-      var span = document.createElement("span");
-      span.className = "tick" + (i < filled ? " is-filled" : "");
-      frag.appendChild(span);
-    }
-    row.innerHTML = "";
-    row.appendChild(frag);
+  function renderRing(pct) {
+    var circle = document.getElementById("dialProgress");
+    var offset = CIRCUMFERENCE * (1 - pct / 100);
+    circle.style.strokeDasharray = CIRCUMFERENCE.toFixed(2) + " " + CIRCUMFERENCE.toFixed(2);
+    circle.style.strokeDashoffset = offset.toFixed(2);
   }
 
   function pulseNumber() {
@@ -70,14 +65,13 @@
         ? "hasta el " + dateFmtLong.format(TARGET_DATE)
         : "Plazo alcanzado";
 
-    document.getElementById("elapsedText").textContent =
-      s.elapsed + " días transcurridos de " + TOTAL_DAYS;
-    document.getElementById("percentText").textContent = Math.round(s.pct) + "%";
+    document.getElementById("metaLine").textContent =
+      Math.round(s.pct) + "% - " + s.elapsed + " días de " + TOTAL_DAYS;
 
     document.getElementById("dateRange").textContent =
       dateFmtShort.format(START_DATE) + " \u2192 " + dateFmtShort.format(TARGET_DATE);
 
-    renderTicks(s.pct);
+    renderRing(s.pct);
   }
 
   render();
